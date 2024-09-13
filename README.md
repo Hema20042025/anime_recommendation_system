@@ -2,7 +2,9 @@
 
 This is a web-based Anime Recommendation System built using Streamlit. It provides personalized anime recommendations based on a similarity algorithm and integrates the TMDb API to display the recommended anime titles along with their posters.
 
-Features:
+##Features:
+
+
 
 
 Anime Recommendation: Recommends anime titles similar to the user's selected anime.
@@ -13,7 +15,14 @@ Responsive UI: Horizontal display of recommendations with a user-friendly interf
 
 Content-Based Filtering: Uses a similarity matrix to generate recommendations based on content similarity.
 
-Technologies Used:
+
+
+
+##Technologies Used:
+
+
+
+
 
 Python: Core programming language for logic and data handling.
 
@@ -26,7 +35,14 @@ TMDb API: Used to fetch anime posters and details.
 pickle: For loading precomputed similarity matrices and anime datasets.
 
 
-Files in the Project:
+
+
+
+
+##Files in the Project:
+
+
+
 
 app.py: Main Streamlit app script.
 
@@ -37,7 +53,14 @@ similarity.pkl: Precomputed similarity matrix for content-based filtering.
 requirements.txt: List of dependencies required to run the project.
 
 
-Acknowledgements:
+
+
+
+##Acknowledgements:
+
+
+
+
 
 The recommendation engine is inspired by various content-based filtering approaches.
 
