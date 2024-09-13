@@ -5,8 +5,11 @@ This is a web-based Anime Recommendation System built using Streamlit. It provid
 Features:
 
 Anime Recommendation: Recommends anime titles similar to the user's selected anime.
+
 TMDb API Integration: Displays the title and poster of the recommended anime fetched from TMDb.
+
 Responsive UI: Horizontal display of recommendations with a user-friendly interface.
+
 Content-Based Filtering: Uses a similarity matrix to generate recommendations based on content similarity.
 
 Technologies Used:
