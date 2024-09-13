@@ -1,4 +1,4 @@
-                                                                Anime Recommendation System
+                                                               Anime Recommendation System
 
 This is a web-based Anime Recommendation System built using Streamlit. It provides personalized anime recommendations based on a similarity algorithm and integrates the TMDb API to display the recommended anime titles along with their posters.
 
