@@ -60,7 +60,7 @@ animes_list = pickle.load(open('animes.pkl', 'rb'))
 animes = pd.DataFrame(animes_list)
 
 # Load the compressed similarity.pkl.gz file
-with gzip.open('similarity.pkl.gz', 'rb') as f:
+with gzip.open('updated_similarity.pkl.gz', 'rb') as f:
     similarity = pickle.load(f)
 
 # Streamlit app
