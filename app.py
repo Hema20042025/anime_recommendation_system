@@ -84,3 +84,16 @@ if st.button('Recommend'):
             else:
                 st.write("***Poster Not Available***")
 
+
+import gzip
+
+# Path to your existing pickle file
+pickle_file = 'similarity.pkl'
+compressed_file = 'updated_similarity.pkl.gz'
+
+# Compress the file and save it
+with open(pickle_file, 'rb') as f_in:
+    with gzip.open(compressed_file, 'wb') as f_out:
+        f_out.writelines(f_in)
+
+print(f"Compressed file saved as: {compressed_file}")
