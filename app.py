@@ -62,7 +62,7 @@ animes = pd.DataFrame(animes_list)
 
 # Load the compressed similarity.pkl.gz file
 try:
-    with gzip.open('similarity.pkl.gz', 'rb') as f:
+    with gzip.open('updated_similarity.pkl.gz', 'rb') as f:
         similarity = pickle.load(f)
     print("Loaded similarity data successfully!")
 except Exception as e:
