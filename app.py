@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import requests
 import pickle
+import gzip
 
 # TMDb API key
 tmdb_api_key = '196506d3ecb6b9c36355886bcd6d92ab'
-
 
 # Function to fetch details from TMDb
 def fetch_anime_details(title, api_key):
@@ -17,24 +17,21 @@ def fetch_anime_details(title, api_key):
     response = requests.get(url, params=params)
     data = response.json()
 
-    # Check if results exist
     if data['results']:
-        first_result = data['results'][0]  # Taking the first result as the best match
+        first_result = data['results'][0]
         return {
             'tmdb_id': first_result['id'],
-            'title': first_result.get('name', title),  # Get the name or fallback to original title
+            'title': first_result.get('name', title),
             'poster_path': first_result.get('poster_path', None)
         }
     else:
         return None
-
 
 # Function to get full URL of the poster image
 def get_poster_url(poster_path):
     if poster_path:
         return f"https://image.tmdb.org/t/p/w500{poster_path}"
     return None
-
 
 # Function to recommend animes
 def recommend(anime):
@@ -58,11 +55,13 @@ def recommend(anime):
             })
     return recommended_animes
 
-
-# Load data
+# Load data with compression
 animes_list = pickle.load(open('animes.pkl', 'rb'))
 animes = pd.DataFrame(animes_list)
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+
+# Load the compressed similarity.pkl.gz file
+with gzip.open('similarity.pkl.gz', 'rb') as f:
+    similarity = pickle.load(f)
 
 # Streamlit app
 st.title("Anime Recommendation System")
@@ -72,10 +71,7 @@ selected_anime_name = st.selectbox('***Select an Anime***', animes['name'].value
 if st.button('Recommend'):
     recommendations = recommend(selected_anime_name)
 
-    # Create columns for horizontal layout
     cols = st.columns(len(recommendations))
-
-    # Display each recommendation in a separate column
     for col, recommendation in zip(cols, recommendations):
         with col:
             st.write(recommendation['title'])
@@ -85,15 +81,3 @@ if st.button('Recommend'):
                 st.write("***Poster Not Available***")
 
 
-import gzip
-
-# Path to your existing pickle file
-pickle_file = 'similarity.pkl'
-compressed_file = 'updated_similarity.pkl.gz'
-
-# Compress the file and save it
-with open(pickle_file, 'rb') as f_in:
-    with gzip.open(compressed_file, 'wb') as f_out:
-        f_out.writelines(f_in)
-
-print(f"Compressed file saved as: {compressed_file}")
