@@ -59,9 +59,15 @@ def recommend(anime):
 animes_list = pickle.load(open('animes.pkl', 'rb'))
 animes = pd.DataFrame(animes_list)
 
+
 # Load the compressed similarity.pkl.gz file
-with gzip.open('updated_similarity.pkl.gz', 'rb') as f:
-    similarity = pickle.load(f)
+try:
+    with gzip.open('similarity.pkl.gz', 'rb') as f:
+        similarity = pickle.load(f)
+    print("Loaded similarity data successfully!")
+except Exception as e:
+    print(f"Error loading similarity data: {e}")
+
 
 # Streamlit app
 st.title("Anime Recommendation System")
